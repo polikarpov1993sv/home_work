@@ -7,6 +7,9 @@ class Student:
         self.courses_in_progress = []
         self.grades = {}
     # Прописать механизм выставления оценок лектору студентами, посмотреть как работает isinstance
+    def rate_hw(self, lecturer, course, grade):
+        if isinstance(lecturer, Lecturer) and course in self.courses_attached:
+            
 
 class Mentor:
     def __init__(self, name, surname):
