@@ -19,6 +19,14 @@ class Student:
         else:
             return "Ошибка"
 # Прописать функцию среднего значения оценки
+    def av_rating(self):
+        sum_rating = 0
+        len_rating = 0
+        for course in self.grades.values():
+            sum_rating += sum(course)
+            len_rating += len(course)
+            average_rating = sum_rating / len_rating
+            return print(average_rating)
 
 class Mentor:
     def __init__(self, name, surname):
@@ -49,15 +57,34 @@ class Reviewer(Mentor):
 
 
 
+#Студенты
+student_1 = Student('Игорь', 'Игорев', 'Муж')
+student_1.courses_in_progress += ['Python']
 
+student_2 = Student('Светлана', 'Светкина', 'Жен')
+student_2.courses_in_progress += ['Python']
 
-best_student = Student('Ruoy', 'Eman', 'your_gender')
-best_student.courses_in_progress += ['Python']
+#Лекторы
+lecturer_1 = Lecturer('Олег', 'Олегов')
+lecturer_1.courses_attached += ['Python']
  
-cool_mentor = Mentor('Some', 'Buddy')
-cool_mentor.courses_attached += ['Python']
+lecturer_2 = Lecturer('Ирина', 'Иринова')
+lecturer_2.courses_attached += ['Python']
+
+#Проверяющие
+reviewer_1 = Reviewer('Сергей', 'Сергеев')
+reviewer_1.courses_attached += ['Python']
  
-cool_mentor.rate_hw(best_student, 'Python', 10)
-cool_mentor.rate_hw(best_student, 'Python', 10)
-cool_mentor.rate_hw(best_student, 'Python', 10)
- 
+reviewer_2 = Reviewer('Ольга', 'Ольгова')
+reviewer_2.courses_attached += ['Python']
+
+# Оценки студентам
+reviewer_1.rate_hw(student_1, 'Python', 10)
+reviewer_1.rate_hw(student_1, 'Python', 9)
+reviewer_1.rate_hw(student_1, 'Python', 7)
+
+reviewer_2.rate_hw(student_2, 'Python', 10)
+reviewer_2.rate_hw(student_2, 'Python', 9)
+reviewer_2.rate_hw(student_2, 'Python', 9)
+
+print(student_1.av_rating())
