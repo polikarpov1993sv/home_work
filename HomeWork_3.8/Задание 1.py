@@ -1,3 +1,6 @@
+from operator import le
+
+
 class Student:
     def __init__(self, name, surname, gender):
         self.name = name
@@ -6,17 +9,16 @@ class Student:
         self.finished_courses = []
         self.courses_in_progress = []
         self.grades = {}
-    # Прописать механизм выставления оценок лектору студентами, проверить в ТЗ проверку курса у студента
-    def rate_hw(self, lecturer, course, grade):
-        if isinstance(lecturer, Lecturer) and course in self.courses_attached:
-           if course in lecturer.grades:
-              if course in lecturer.grades:
+
+    def rate_lw(self, lecturer, course, grade):
+        if isinstance(lecturer, Lecturer) and course in self.finished_courses and course in lecturer.courses_attached:
+            if course in lecturer.grades:
                 lecturer.grades[course] += [grade]
             else:
                 lecturer.grades[course] = [grade]
         else:
-            return 'Ошибка'
-        
+            return "Ошибка"
+# Прописать функцию среднего значения оценки
 
 class Mentor:
     def __init__(self, name, surname):
@@ -43,6 +45,12 @@ class Reviewer(Mentor):
         else:
             return 'Ошибка'
  
+
+
+
+
+
+
 best_student = Student('Ruoy', 'Eman', 'your_gender')
 best_student.courses_in_progress += ['Python']
  
