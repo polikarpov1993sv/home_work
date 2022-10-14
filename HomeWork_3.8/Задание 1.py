@@ -18,7 +18,7 @@ class Student:
                 lecturer.grades[course] = [grade]
         else:
             return "Ошибка"
-# Прописать функцию среднего значения оценки
+   
     def av_rating(self):
         sum_rating = 0
         len_rating = 0
@@ -27,6 +27,9 @@ class Student:
             len_rating += len(course)
             average_rating = sum_rating / len_rating
             return print(average_rating)
+
+    def __str__(self) -> str:
+        res = f''
 
 class Mentor:
     def __init__(self, name, surname):
@@ -39,7 +42,15 @@ class Lecturer(Mentor):
     def __init__(self, name, surname):
         super().__init__(name, surname)
         self.grades = {}
-
+    
+    def av_rating(self):
+        sum_rating = 0
+        len_rating = 0
+        for course in self.grades.values():
+            sum_rating += sum(course)
+            len_rating += len(course)
+            average_rating = sum_rating / len_rating
+            return average_rating
 
 class Reviewer(Mentor):
     def __init__(self, name, surname):
@@ -52,26 +63,28 @@ class Reviewer(Mentor):
                 student.grades[course] = [grade]
         else:
             return 'Ошибка'
- 
+    def __str__(self):
+        res = f'Имя: {self.name} \nФамилия: {self.surname}'
+        return res
 
 
 
 
-#Студенты
+# Студенты
 student_1 = Student('Игорь', 'Игорев', 'Муж')
 student_1.courses_in_progress += ['Python']
 
 student_2 = Student('Светлана', 'Светкина', 'Жен')
 student_2.courses_in_progress += ['Python']
 
-#Лекторы
+# Лекторы
 lecturer_1 = Lecturer('Олег', 'Олегов')
 lecturer_1.courses_attached += ['Python']
  
 lecturer_2 = Lecturer('Ирина', 'Иринова')
 lecturer_2.courses_attached += ['Python']
 
-#Проверяющие
+# Проверяющие
 reviewer_1 = Reviewer('Сергей', 'Сергеев')
 reviewer_1.courses_attached += ['Python']
  
@@ -87,4 +100,8 @@ reviewer_2.rate_hw(student_2, 'Python', 10)
 reviewer_2.rate_hw(student_2, 'Python', 9)
 reviewer_2.rate_hw(student_2, 'Python', 9)
 
-print(student_1.av_rating())
+# Оценки лекторам
+
+
+
+print(reviewer_1)
