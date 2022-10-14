@@ -11,7 +11,7 @@ class Student:
         self.grades = {}
 
     def rate_lw(self, lecturer, course, grade):
-        if isinstance(lecturer, Lecturer) and course in self.finished_courses and course in lecturer.courses_attached:
+        if isinstance(lecturer, Lecturer) and course in lecturer.courses_attached:
             if course in lecturer.grades:
                 lecturer.grades[course] += [grade]
             else:
@@ -25,11 +25,18 @@ class Student:
         for course in self.grades.values():
             sum_rating += sum(course)
             len_rating += len(course)
-            average_rating = sum_rating / len_rating
-            return print(average_rating)
+            average_rating = round(sum_rating / len_rating, 2)
+            return average_rating
 
     def __str__(self):
-        res = f'Имя: {self.name} \nФамилия: {self.surname}\nСредняя оценка за домашние задания: {self.av_rating(self)}\nКурсы в процессе изучения: \nЗавершенные курсы: '
+        res = f'Имя: {self.name}\nФамилия: {self.surname}\nСредняя оценка за домашние задания: {self.av_rating()}\nКурсы в процессе изучения: {", ".join(self.courses_in_progress)}\nЗавершенные курсы: {", ".join(self.finished_courses)}'
+        return res
+
+    def __lt__(self, other):
+        if not isinstance(other, Student):
+            print("Преподователей и студентов между собой не сравнивают!")
+            return
+        return self.av_rating() < other.av_rating()
 
 class Mentor:
     def __init__(self, name, surname):
@@ -49,13 +56,18 @@ class Lecturer(Mentor):
         for course in self.grades.values():
             sum_rating += sum(course)
             len_rating += len(course)
-            average_rating = sum_rating / len_rating
-            return print(average_rating)
+            average_rating = round(sum_rating / len_rating, 2)
+            return average_rating
 
-    # def __str__(self):
-    #     res = f"Имя: {self.name} \nФамилия: {self.surname} \n {self.sav_rating(self)}"
-    #     return res
-        
+    def __str__(self):
+        res = f"Имя: {self.name}\nФамилия: {self.surname}\nСредняя оценка за лекции: {self.av_rating()}"
+        return res
+    
+    def __lt__(self, other):
+        if not isinstance(other, Lecturer):
+            print("Преподователей и студентов между собой не сравнивают!")
+            return
+        return self.av_rating() < other.av_rating()      
 
 class Reviewer(Mentor):
     def __init__(self, name, surname):
@@ -117,4 +129,4 @@ student_1.rate_lw(lecturer_1, 'Python', 6)
 student_2.rate_lw(lecturer_2, 'Python', 10)
 student_2.rate_lw(lecturer_2, 'Python', 6)
 student_2.rate_lw(lecturer_2, 'Python', 6)
-print(student_1)
+
