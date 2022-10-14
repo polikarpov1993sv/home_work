@@ -28,8 +28,8 @@ class Student:
             average_rating = sum_rating / len_rating
             return print(average_rating)
 
-    def __str__(self) -> str:
-        res = f''
+    def __str__(self):
+        res = f'Имя: {self.name} \nФамилия: {self.surname}\nСредняя оценка за домашние задания: {self.av_rating(self)}\nКурсы в процессе изучения: \nЗавершенные курсы: '
 
 class Mentor:
     def __init__(self, name, surname):
@@ -50,11 +50,17 @@ class Lecturer(Mentor):
             sum_rating += sum(course)
             len_rating += len(course)
             average_rating = sum_rating / len_rating
-            return average_rating
+            return print(average_rating)
+
+    # def __str__(self):
+    #     res = f"Имя: {self.name} \nФамилия: {self.surname} \n {self.sav_rating(self)}"
+    #     return res
+        
 
 class Reviewer(Mentor):
     def __init__(self, name, surname):
         super().__init__(name, surname)
+    
     def rate_hw(self, student, course, grade):
         if isinstance(student, Student) and course in self.courses_attached and course in student.courses_in_progress:
             if course in student.grades:
@@ -63,6 +69,7 @@ class Reviewer(Mentor):
                 student.grades[course] = [grade]
         else:
             return 'Ошибка'
+    
     def __str__(self):
         res = f'Имя: {self.name} \nФамилия: {self.surname}'
         return res
@@ -73,9 +80,11 @@ class Reviewer(Mentor):
 # Студенты
 student_1 = Student('Игорь', 'Игорев', 'Муж')
 student_1.courses_in_progress += ['Python']
+student_1.finished_courses += ["Введение в програмирование"]
 
 student_2 = Student('Светлана', 'Светкина', 'Жен')
 student_2.courses_in_progress += ['Python']
+student_2.finished_courses += ["Введение в програмирование"]
 
 # Лекторы
 lecturer_1 = Lecturer('Олег', 'Олегов')
@@ -101,7 +110,11 @@ reviewer_2.rate_hw(student_2, 'Python', 9)
 reviewer_2.rate_hw(student_2, 'Python', 9)
 
 # Оценки лекторам
+student_1.rate_lw(lecturer_1, 'Python', 10)
+student_1.rate_lw(lecturer_1, 'Python', 8)
+student_1.rate_lw(lecturer_1, 'Python', 6)
 
-
-
-print(reviewer_1)
+student_2.rate_lw(lecturer_2, 'Python', 10)
+student_2.rate_lw(lecturer_2, 'Python', 6)
+student_2.rate_lw(lecturer_2, 'Python', 6)
+print(student_1)
