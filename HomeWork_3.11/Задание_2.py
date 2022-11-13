@@ -28,6 +28,6 @@ class YaUploader:
 
 if __name__ == '__main__':
     path_to_file = os.path.abspath('test/test.txt')
-    token = "y0_AgAAAAAonNYPAADLWwAAAADT5agr3USZNbMPTV-YktGbTr4TgGSSt0I"
+    token = ""
     uploader = YaUploader(token)
     result = uploader.upload(path_to_file)
