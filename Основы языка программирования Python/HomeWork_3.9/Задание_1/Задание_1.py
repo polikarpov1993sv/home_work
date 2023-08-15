@@ -1,6 +1,6 @@
 recipes = []
 
-with open('recipes.txt', 'rt', encoding='utf8' ) as rec_fail:
+with open('recipes.txt', 'rt', encoding='utf8') as rec_fail:
     for text in rec_fail:
         dish_name = text.strip()
         dish = {"name": dish_name, "ingredients": []}

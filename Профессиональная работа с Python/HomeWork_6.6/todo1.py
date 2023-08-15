@@ -7,7 +7,7 @@ def logger(old_function):
 
     logging.basicConfig(
     level=logging.INFO, 
-    filename = "main.log", 
+    filename ="main.log",
     format = "%(asctime)s - %(message)s", 
     datefmt='%H:%M:%S',
     )

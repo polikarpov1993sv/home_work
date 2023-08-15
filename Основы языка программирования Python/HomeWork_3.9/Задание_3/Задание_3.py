@@ -24,5 +24,5 @@ for num_text in sorted_text_line.keys():
 
 out_text = "\n".join(out_text_List)
 
-with open("out_text.txt", 'w', encoding='utf8' ) as doc:
+with open("out_text.txt", 'w', encoding='utf8') as doc:
     doc.write(out_text)

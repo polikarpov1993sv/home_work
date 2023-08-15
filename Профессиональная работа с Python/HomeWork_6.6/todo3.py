@@ -7,7 +7,7 @@ def logger(old_function):
 
     logging.basicConfig(
     level=logging.INFO, 
-    filename = "main1.log", 
+    filename ="main1.log",
     format = "%(asctime)s - %(message)s", 
     datefmt='%H:%M:%S',
     )
@@ -25,7 +25,7 @@ def logger(old_function):
 
 recipes = []
 
-with open('recipes.txt', 'r', encoding='utf8' ) as rec_fail:
+with open('recipes.txt', 'r', encoding='utf8') as rec_fail:
     for text in rec_fail:
         dish_name = text.strip()
         dish = {"name": dish_name, "ingredients": []}
@@ -39,7 +39,7 @@ with open('recipes.txt', 'r', encoding='utf8' ) as rec_fail:
 
 @logger
 def get_shop_list_by_dishes(list_dish, people):
-    with open('recipes.txt', 'r', encoding='utf8' ) as rec_fail:
+    with open('recipes.txt', 'r', encoding='utf8') as rec_fail:
         for text in rec_fail:
             dish_name = text.strip()
             dish = {"name": dish_name, "ingredients": []}
