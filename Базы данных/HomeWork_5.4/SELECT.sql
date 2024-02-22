@@ -1,9 +1,26 @@
+
+select name , max (time) from songs;
+
+select name , time from songs
+where time > 3.5;
+
+select name, release_date from songs s
+left join albums a on s.id_of_album  = a.id
+where release_date between '2019-01-01' and '2020-12-31';
+order by name, release_date
+
+select nickname from singers
+where nickname not like "% %";
+
+select name from songs
+where name like "% мой %";
+
 select genre_id , count(singer_id) from genres_and_singers
 group by genre_id ;
 
 select s.name, release_date from songs s
 left join albums a on s.id_of_album  = a.id
-where release_date between '2019-01-01' and '2020-12-31';
+where release_date not like "%2020%";
 
 select a.name, avg(time) from albums a
 left join songs s on a.id = s.id_of_album 
@@ -12,7 +29,7 @@ group by a.name;
 select distinct nickname from albums_and_singers aas 
 left join albums a on aas.album_id=a.id 
 left join singers s on aas.singer_id=s.id 
-where release_date not between '2019-12-31' and '2021-01-01'
+where release_date between '2019-12-31' and '2021-01-01'
 
 select distinct c.name, s2.nickname from collections c
 left join collections_and_songs cas on cas.collection_id = c.id 
@@ -53,19 +70,3 @@ left join songs s2 on a2.id = s2.id_of_album
 group by a2.name 
 order by count(a2.name) 
 limit 1)
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
